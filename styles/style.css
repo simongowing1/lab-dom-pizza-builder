@@ -163,7 +163,7 @@ body {
 }
 
 /* Imitate a pressed effect for buttons */
-.btn:active {
+.btnactive: {
   top: 5px;
   box-shadow: none;
 }
