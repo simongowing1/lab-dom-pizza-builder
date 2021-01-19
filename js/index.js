@@ -115,17 +115,17 @@ function renderButtons() {
   
   document.querySelectorAll('.btn-sauce').forEach(button => {
     if (state.whiteSauce) {
-      button.classList.remove('active');
+      button.classList.add('active');
     } else {
-      button.classList.add('active')
+      button.classList.remove('active')
     }
   });
   
   document.querySelectorAll('.btn-crust').forEach(button => {
     if (state.glutenFreeCrust) {
-      button.classList.remove('active');
+      button.classList.add('active');
     } else {
-      button.classList.add('active')
+      button.classList.remove('active')
     }
   });
 
@@ -152,22 +152,92 @@ function renderButtons() {
 }
 
 
-function renderPrice() {
+
+  function renderPrice() {
+    // Iteration 4: change the HTML of `<aside class="panel price">`
+    
+       let total = basePrice
+       let newHtml = ""
+       for ( let ingredient in state) {
+         if (state[ingredient]) {
+           total += ingredients[ingredient].price;
+           newHtml += `<li>$ ${ingredients[ingredient].price} ${ingredients[ingredient].name}</li>`
+         }
+       }
+       document.querySelector(".price ul").innerHTML = newHtml;
+       document.querySelector("strong").innerHTML = `$${total}`
+         
+   }
+    /*let singlePrice = Object.values(ingredients);
+      let allToppingPrice = 0;
+      let ingredientList= document.querySelectorAll('.panel.price >ul >li')
+      let pepperoniPrice = ingredientList[0];
+      // I miss the "remove" html value when the button is untoggled.
+      pepperoniPrice.setAttribute('id', 'pepperoni-price-active');
+      if (state.pepperoni) {
+        pepperoniPrice.style.visibility = 'visible';
+        allToppingPrice += singlePrice[0].price;
+         } else {
+        pepperoniPrice.style.visibility = 'hidden';
+        };
+      let mushroomsPrice = ingredientList[1];
+      mushroomsPrice.setAttribute('id', 'mushrooms-price-active');
+        if (state.mushrooms) {
+        mushroomsPrice.style.visibility = 'visible';
+        allToppingPrice += singlePrice[1].price;
+        } else {
+          mushroomsPrice.style.visibility = 'hidden';
+        };
+      let greenPepperPrice = ingredientList[2];
+        greenPepperPrice.setAttribute('id', 'pepper-price-active');
+        if (state.greenPeppers) {
+          greenPepperPrice.style.visibility = 'visible';
+          allToppingPrice += singlePrice[2].price;
+        } else {
+            greenPepperPrice.style.visibility = 'hidden';
+        };
+      let saucePrice = ingredientList[3];
+      saucePrice.setAttribute('id', 'sauce-price-active');
+        if (state.whiteSauce) {
+          saucePrice.style.visibility = 'hidden';
+        } else {
+          saucePrice.style.visibility = 'visible'; 
+          allToppingPrice += singlePrice[3].price;
+        };
+      let crustPrice = ingredientList[4];
+      crustPrice.setAttribute('id', 'crust-price-active');
+        if (state.glutenFreeCrust) {
+          crustPrice.style.visibility = 'hidden';
+        } else {
+          crustPrice.style.visibility = 'visible';
+          allToppingPrice += singlePrice[4].price;
+        };
+      //create a class for <strong> and maybe it's better to use a loop to sum all toppings prices
+      let totalPrice = basePrice + allToppingPrice;
+      let finalPrice = document.querySelector('.panel.price > strong').innerText;
+     
+//      finalPrice.replace(totalPrice)
+//      console.log(finalPrice)
+//        console.log(totalPrice)
+  }
+*/
+
+renderEverything();
+
   // Iteration 4: change the HTML of `<aside class="panel price">`
-  const priceList = document.querySelectorAll('.panel price ul');
-  
-  document.querySelectorAll('.panel price ul').forEach(topping => {
-    if (state.pepperoni) {
-      const newTopping = document.createElement ('li');
-      newTopping.innerText = '$1 pepperoni';
+ // const priceList = document.querySelectorAll('.panel price ul');
+  //document.querySelectorAll('.panel price ul').forEach(topping => {
+  //  if (state.pepperoni) {
+  //    const newTopping = document.createElement ('li');
+  //    newTopping.innerText = '$1 pepperoni';
+  //    priceList = document.querySelector('li')
       
 
-    } else {
-      topping.classList.remove('active')
-    }
-  });
+  //  } else {
+  //    topping.classList.remove('active')
+  //  }
+  // });
 
-}
 
 
 // renderEverything();
